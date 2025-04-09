@@ -1,0 +1,26 @@
+1. Create the table SEMP with the following structure:-
+EMPNO CHAR(4)
+EMPNAME CHAR(20)
+BASIC FLOAT
+DEPTNO CHAR(2)
+DEPTHEAD CHAR(4)
+
+---> CREATE TABLE SEMP ( EMPNO CHAR(4), EMPNAME CHAR(20), BASIC FLOAT, DEPTNO CHAR(2), DEPTHEAD CHAR(4) );
+
+2. Create the table SDEPT with the following structure:-
+DEPTNO CHAR(2)
+DEPTNAME CHAR(15)
+----> CREATE TABLE SDEPT ( DEPTNO CHAR(20), DEPTNAME CHAR(15) );
+
+3. Insert into the SDEPT table the following values:-
+10, Development
+20, Training
+-----> INSERT INTO SDEPT (DEPTNO, DEPTNAME) VALUES (10, 'Development'), (20, 'Training');
+
+4. Insert into the SEMP table the following values:-
+0001, SUNIL, 6000, 10
+0002, HIREN, 8000, 20
+0003, ALI, 4000, 10, 0001
+0004, GEORGE, 6000, 0002
+----> INSERT INTO SEMP (EMPNO, EMPNAME, BASIC, DEPTNO, DEPTHEAD ) VALUES ('0001', 'SUNIL', 6000, '10', NULL), ('0002', 'HIREN', 8000, '20', NULL), ('0003', 'ALI', 4000, '10', '0001'), ('0004', 'GEORGE', 6000, NULL, '0002');
+Query OK, 4 rows affected (0.02 sec)
