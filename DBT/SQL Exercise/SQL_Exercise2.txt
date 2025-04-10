@@ -1,0 +1,71 @@
+1. Display the Supplier table in the descending order of CITY.
+----> SELECT * FROM S ORDER BY City DESC;
++----+--------+--------+--------+
+| S# | Sname  | Status | City   |
++----+--------+--------+--------+
+| S2 | Pooja  |     20 | Paris  |
+| S1 | Nikita |     10 | London |
+| S3 | Piyu   |     30 | London |
++----+--------+--------+--------+
+3 rows in set (0.01 sec)
+
+2. Display the Part Table in the ascending order of CITY and within the city in the ascending order of Part names.
+----> SELECT * FROM P ORDER BY City ASC, Pname ASC;
++----+--------+-------+--------+--------+
+| P# | Pname  | Color | Weight | City   |
++----+--------+-------+--------+--------+
+| P1 | Piyush | Red   |  12.50 | London |
+| P2 | Praful | Green |   8.00 | Paris  |
+| P3 | Sony   | Blue  |   6.00 | Rome   |
++----+--------+-------+--------+--------+
+3 rows in set (0.00 sec)
+
+3. Display all the Suppliers with a status between 10 and 20.
+--->  SELECT * FROM S WHERE Status BETWEEN 10 AND 20;
++----+--------+--------+--------+
+| S# | Sname  | Status | City   |
++----+--------+--------+--------+
+| S1 | Nikita |     10 | London |
+| S2 | Pooja  |     20 | Paris  |
++----+--------+--------+--------+
+2 rows in set (0.01 sec)
+
+4. Display all the Parts and their Weight, which are not in the range of 10 and 15.
+---> SELECT Pname, Weight FROM P WHERE Weight NOT BETWEEN 10 AND 15;
++--------+--------+
+| Pname  | Weight |
++--------+--------+
+| Praful |   8.00 |
+| Sony   |   6.00 |
++--------+--------+
+2 rows in set (0.00 sec)
+
+5. Display all the Part names starting with the letter ‘S’.
+----> SELECT Pname FROM P WHERE Pname LIKE 'S%';
++-------+
+| Pname |
++-------+
+| Sony  |
++-------+
+1 row in set (0.00 sec)
+
+6. Display all the Suppliers, belonging to cities starting with the letter ‘L’.
+----> 
+mysql> SELECT * FROM S WHERE City LIKE 'L%';
++----+--------+--------+--------+
+| S# | Sname  | Status | City   |
++----+--------+--------+--------+
+| S1 | Nikita |     10 | London |
+| S3 | Piyu   |     30 | London |
++----+--------+--------+--------+
+2 rows in set (0.00 sec)
+
+7. Display all the Projects, with the third letter in JNAME as ‘n’.
+----> SELECT * FROM J WHERE Jname LIKE '___n%';
++----+--------+-------+
+| J# | Jname  | City  |
++----+--------+-------+
+| J2 | Chanda | Paris |
++----+--------+-------+
+1 row in set (0.01 sec)
+
