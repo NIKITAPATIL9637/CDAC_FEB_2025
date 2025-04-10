@@ -24,3 +24,209 @@ DEPTNAME CHAR(15)
 0004, GEORGE, 6000, 0002
 ----> INSERT INTO SEMP (EMPNO, EMPNAME, BASIC, DEPTNO, DEPTHEAD ) VALUES ('0001', 'SUNIL', 6000, '10', NULL), ('0002', 'HIREN', 8000, '20', NULL), ('0003', 'ALI', 4000, '10', '0001'), ('0004', 'GEORGE', 6000, NULL, '0002');
 Query OK, 4 rows affected (0.02 sec)
+
+Q--> SUPPLIER Table
+CREATE TABLE S (
+    `S#` VARCHAR(10),
+    Sname VARCHAR(50),
+    Status INT,
+    City VARCHAR(50)
+);
+
+reate S, P, J, SPJ tables as specified below and insert a few rows in each table:-
+SUPPLIER
+(S#, Sname, Status, City)
+-
+S
+PARTS
+(P#, Pname, Color, Weight, City)
+-
+P
+PROJECTS
+(J#, Jname, City)
+-
+J
+SUPPLIER-PARTS-PROJECT
+(S#, P#, J#, Qty)
+-
+SPJ
+Sample data for S# column:- ‘S1’, ‘S2’, ‘S3’, etc.
+Sample data for P# column:- ‘P1’, ‘P2’, ‘P3’, etc.
+Sample data for J# column:- ‘J1’, ‘J2’, ‘J3’, etc.
+Sample data for Status column:- 10, 20, 30, etc.
+
+---> -- SUPPLIER Table
+CREATE TABLE S (
+    `S#` VARCHAR(10) PRIMARY KEY,
+    Sname VARCHAR(50),
+    Status INT,
+    City VARCHAR(50)
+);
+
+-- PARTS Table
+CREATE TABLE P (
+    `P#` VARCHAR(10) PRIMARY KEY,
+    Pname VARCHAR(50),
+    Color VARCHAR(20),
+    Weight DECIMAL(5,2),
+    City VARCHAR(50)
+);
+
+-- PROJECTS Table
+CREATE TABLE J (
+    `J#` VARCHAR(10) PRIMARY KEY,
+    Jname VARCHAR(50),
+    City VARCHAR(50)
+);
+
+-- SUPPLIER-PARTS-PROJECT Table
+CREATE TABLE SPJ (
+    `S#` VARCHAR(10),
+    `P#` VARCHAR(10),
+    `J#` VARCHAR(10),
+    Qty INT,
+    PRIMARY KEY (`S#`, `P#`, `J#`),
+    FOREIGN KEY (`S#`) REFERENCES S(`S#`),
+    FOREIGN KEY (`P#`) REFERENCES P(`P#`),
+    FOREIGN KEY (`J#`) REFERENCES J(`J#`)
+);
+
+INSERT INTO S VALUES ('S1', 'Nikita', 10, 'London'),
+    -> ('S2', 'Pooja', 20, 'Paris'),
+    -> ('S3', 'Piyu', 30, 'London');
+Query OK, 3 rows affected (0.03 sec)
+
+INSERT INTO P VALUES ('P1', 'Piyush', 'Red', 12.5, 'London'),
+    -> ('P2', 'Praful', 'Green', 8.0, 'Paris'),
+    -> ('P3', 'Sony', 'Blue', 6.0, 'Rome');
+Query OK, 3 rows affected (0.02 sec)
+
+INSERT INTO J VALUES ('J1', 'Mayuri', 'London'),
+    -> ('J2', 'Chanda', 'Paris'),
+    -> ('J3', 'Sanjay', 'Rome');
+Query OK, 3 rows affected (0.01 sec)
+
+ INSERT INTO SPJ VALUES
+    -> ('S1', 'P1', 'J1', 300),
+    -> ('S1', 'P2', 'J2', 200),
+    -> ('S2', 'P3', 'J3', 150),
+    -> ('S3', 'P1', 'J2', 400),
+    -> ('S3', 'P2', 'J1', 250);
+Query OK, 5 rows affected (0.02 sec)
+
+5. Display all the data from the S table.
+---> SELECT * FROM S;
+----+--------+--------+--------+
+| S# | Sname  | Status | City   |
++----+--------+--------+--------+
+| S1 | Nikita |     10 | London |
+| S2 | Pooja  |     20 | Paris  |
+| S3 | Piyu   |     30 | London |
++----+--------+--------+--------+
+3 rows in set (0.02 sec)
+
+6. Display only the S# and SNAME fields from the S table.
+--->  SELECT `S#`, Sname FROM S;
++----+--------+
+| S# | Sname  |
++----+--------+
+| S1 | Nikita |
+| S2 | Pooja  |
+| S3 | Piyu   |
++----+--------+
+3 rows in set (0.00 sec)
+
+7. Display the PNAME and COLOR from the P table for the CITY=”London”.
+--->  SELECT Pname, Color FROM P WHERE City='London';
++--------+-------+
+| Pname  | Color |
++--------+-------+
+| Piyush | Red   |
++--------+-------+
+1 row in set (0.01 sec)
+
+8. Display all the Suppliers from London.
+---> 
+mysql> SELECT * FROM S WHERE City = 'London';
++----+--------+--------+--------+
+| S# | Sname  | Status | City   |
++----+--------+--------+--------+
+| S1 | Nikita |     10 | London |
+| S3 | Piyu   |     30 | London |
++----+--------+--------+--------+
+2 rows in set (0.00 sec)
+
+9. Display all the Suppliers from Paris or Athens.
+--->  SELECT * FROM S WHERE City = 'Paris' or City = 'Athens';
++----+-------+--------+-------+
+| S# | Sname | Status | City  |
++----+-------+--------+-------+
+| S2 | Pooja |     20 | Paris |
++----+-------+--------+-------+
+1 row in set (0.00 sec)
+
+ SELECT * FROM S WHERE City IN ('Paris','Athens');
++----+-------+--------+-------+
+| S# | Sname | Status | City  |
++----+-------+--------+-------+
+| S2 | Pooja |     20 | Paris |
++----+-------+--------+-------+
+1 row in set (0.01 sec)
+
+10. Display all the Projects in Athens.
+----> SELECT * FROM J WHERE City = 'Athens';
++----+--------+--------+
+| J# | Jname  | City   |
++----+--------+--------+
+| J4 | Sanket | Athens |
++----+--------+--------+
+1 row in set (0.00 sec)
+
+11. Display all the Partnames with the weight between 12 and 14 (inclusive of both).
+---> SELECT * FROM P WHERE Weight between 12 and 14;
++----+--------+-------+--------+--------+
+| P# | Pname  | Color | Weight | City   |
++----+--------+-------+--------+--------+
+| P1 | Piyush | Red   |  12.50 | London |
++----+--------+-------+--------+--------+
+1 row in set (0.00 sec)
+
+12. Display all the Suppliers with a Status greater than or equal to 20.
+--->  SELECT * FROM S WHERE Status >= 20;
++----+-------+--------+--------+
+| S# | Sname | Status | City   |
++----+-------+--------+--------+
+| S2 | Pooja |     20 | Paris  |
+| S3 | Piyu  |     30 | London |
++----+-------+--------+--------+
+2 rows in set (0.01 sec)
+
+13. Display all the Suppliers except the Suppliers from London.
+---> SELECT * FROM S WHERE City NOT IN ('London');
++----+-------+--------+-------+
+| S# | Sname | Status | City  |
++----+-------+--------+-------+
+| S2 | Pooja |     20 | Paris |
++----+-------+--------+-------+
+1 row in set (0.01 sec)
+
+14. Display only the Cities from where the Suppliers come from.
+--->  SELECT DISTINCT City FROM S;
++--------+
+| City   |
++--------+
+| London |
+| Paris  |
++--------+
+2 rows in set (0.01 sec)
+
+15. Assuming that the Part Weight is in GRAMS, display the same in MILLIGRAMS and KILOGRAMS.
+---->  SELECT `P#`, Pname, Weight AS Weight_Grams, Weight * 1000 AS Weight_Milligrams, Weight / 1000 AS Weight_Kilograms FROM P;
++----+--------+--------------+-------------------+------------------+
+| P# | Pname  | Weight_Grams | Weight_Milligrams | Weight_Kilograms |
++----+--------+--------------+-------------------+------------------+
+| P1 | Piyush |        12.50 |          12500.00 |         0.012500 |
+| P2 | Praful |         8.00 |           8000.00 |         0.008000 |
+| P3 | Sony   |         6.00 |           6000.00 |         0.006000 |
++----+--------+--------------+-------------------+------------------+
+3 rows in set (0.01 sec)
