@@ -1,0 +1,85 @@
+1. Write a program containing a loop that iterates from 1 to 1000 using a variable I, which is incremented each time around the loop. The program should output the value of I every hundred iterations (i.e., the output should be 100, 200, etc.).
+--->DECLARE
+  I NUMBER := 1;
+BEGIN
+  LOOP
+    IF MOD(I, 100) = 0 THEN
+      DBMS_OUTPUT.PUT_LINE(I);
+    END IF;
+    I := I + 1;
+    EXIT WHEN I > 1000;
+  END LOOP;
+END;
+
+
+2. Write a program that examines all the numbers from 1 to 999, displaying all those for which the sum of the cubes of the digits equal the number itself.
+--->DECLARE
+  num NUMBER;
+  digit1 NUMBER;
+  digit2 NUMBER;
+  digit3 NUMBER;
+  digit4 NUMBER;
+  digit5 NUMBER;
+BEGIN
+  FOR num IN 1..999 LOOP
+    digit1 := FLOOR(num / 10000);
+    digit2 := FLOOR((num MOD 10000) / 1000);
+    digit3 := FLOOR((num MOD 1000) / 100);     
+    digit4 := FLOOR((num MOD 100) / 10); 
+    digit5 := num MOD 10;
+
+    IF (POW(digit1, 3) + POW(digit2, 3) + POW(digit3, 3) + POW(digit4, 3) + POW(digit5, 3)) = num THEN
+      DBMS_OUTPUT.PUT_LINE('Armstrong number: ' || num);
+    END IF;
+  END LOOP;
+END;
+
+
+3. Write a program that Selects from any table a minimum and maximum value for a radius, along with an increment factor, and generates a series of radii by repeatedly adding the increment to the minimum until the maximum is reached. For each value of the radius, compute and display the circumference, area, and volume of the sphere. (Be sure to include both the maximum and the minimum values.)
+--->DECLARE
+  min_radius NUMBER := 1;
+  max_radius NUMBER := 10;
+  increment NUMBER := 1;
+  circumference NUMBER;
+  area NUMBER;
+  volume NUMBER;
+BEGIN
+  LOOP
+    IF min_radius <= max_radius THEN
+      circumference := 2 * 3.1416 * min_radius;
+      area := 3.1416 * POW(min_radius, 2);
+      volume := (4 / 3) * 3.1416 * POW(min_radius, 3);
+
+      DBMS_OUTPUT.PUT_LINE('Radius: ' || min_radius || ', Circumference: ' || circumference || ', Area: ' || area || ', Volume: ' || volume);
+      min_radius := min_radius + increment;
+    ELSE
+      EXIT;
+    END IF;
+  END LOOP;
+END;
+
+
+4. A palindrome is a word that is spelled the same forward and backward, such as level, radar, etc. Write a program to Selects from any table a five letter word and determine whether it is a palindrome.
+---->DECLARE
+  v_word VARCHAR2(100);
+BEGIN
+  FOR rec IN (SELECT word FROM words) LOOP
+    v_word := rec.word;
+    IF v_word = REVERSE(v_word) THEN
+      DBMS_OUTPUT.PUT_LINE('Palindrome word: ' || v_word);
+    END IF;
+  END LOOP;
+END;
+
+
+5. Modify the above program to Select from any table a variable length word. This requires determining how many characters are read in.
+----> DECLARE
+  v_word VARCHAR2(100);
+BEGIN
+  FOR rec IN (SELECT word FROM words) LOOP
+    v_word := rec.word;
+    IF v_word = REVERSE(v_word) THEN
+      DBMS_OUTPUT.PUT_LINE('Palindrome word: ' || v_word);
+    END IF;
+  END LOOP;
+END;

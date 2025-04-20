@@ -1,0 +1,65 @@
+1. Display all the Suppliers with the same Status as the supplier, ‘CLARK’.
+----> Select * from s where
+    -> Status = (Select Status from s where Sname = 'CLARK');
+Empty set (0.01 sec)
+
+2. Display all the Employees in the same department as the employee ‘MILLER’.
+---> Select * From employee where DeptNo =
+    -> (Select DeptNo From employee Where EmpName = 'MILLER' )
+    -> And EmpName NOT IN('MILLER');
+3. Display all the Parts which have more Weight than all the Red parts.
+---> Select * From P Where Weight >
+    -> (Select MAX(Weight) From P Where Color = 'Red' );
+Empty set (0.01 sec)
+
+4. Display all the Projects going on in the same city as the project ‘TAPE’.
+---> Select * From J Where City =
+    -> (Select City From J Where Jname = 'TAPE');
+Empty set (0.00 sec)
+
+5. Display all the Parts with Weight less than all the Green parts.
+---->  Select * From P Where Weight <
+    -> (Select MIN(Weight) From P Where Color = 'Green');
++----+-------+-------+--------+------+
+| P# | Pname | Color | Weight | City |
++----+-------+-------+--------+------+
+| P3 | Sony  | Blue  |   6.00 | Rome |
++----+-------+-------+--------+------+
+1 row in set (0.00 sec)
+
+6. Display the name of the Supplier who has sold the maximum Quantity (in one sale).
+----> Select s.Sname From S
+    -> JOIN
+    -> SPJ ON s.`S#` = SPJ.`S#`
+    -> Where SPJ.Qty =
+    -> (Select MAX(Qty) From SPJ );
++-------+
+| Sname |
++-------+
+| Piyu  |
++-------+
+1 row in set (0.00 sec)
+
+7. Display the name of the Employee with the minimum Salary.
+----> Select EmpName From Employee
+    -> Where Salary =
+    -> (Select MIN(Salary) From Employee);
+
+8. Display the name of the Supplier who has sold the maximum overall Quantity (sum of Sales).
+----> Select s.Sname From S
+    -> JOIN
+    -> SPJ ON s.`S#` = SPJ.`S#`
+    -> GROUP BY s.`S#`
+    -> ORDER BY SUM(SPJ.Qty) DESC LIMIT 1;
++-------+
+| Sname |
++-------+
+| Piyu  |
++-------+
+1 row in set (0.01 sec)
+
+9. Display the name of the Department with the maximum number of Employees.
+----> Select d.DeptName From department d JOIN
+    -> employee e ON d.deptNo = e.DeptNo
+    -> Group BY d.deptNo
+    -> ORDER BY COUNT(e.EmpId) DESC LIMIT 1;

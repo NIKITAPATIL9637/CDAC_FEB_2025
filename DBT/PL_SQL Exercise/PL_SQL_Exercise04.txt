@@ -1,0 +1,93 @@
+1. The CUSTOMER table of a state electricity board consists of the following fields:-
+Meter Number Varchar 4
+Meter Type Char 1
+Previous Reading Int 5
+Current Reading Int 5
+Customer Type Char 1
+Last Bill payment Char 1 (values could be ‘Y’ or ‘N’)
+There are two types of meters viz. 3- phase or 1-phase coded as ‘T’ or ‘S’ respectively. There are 4 types of customers viz. Agricultural Industrial, Commercial and Residential with codes ‘A’ , ‘I’, ‘C’ and ‘R’ respectively.
+Formulae:-
+Units used = Current Reading – Previous Reading Rate =Rs.1/ 1.25/ 1.50/ 1.30 for A/I/C/R respectively.
+Amount = rate*units used
+Surcharge = 5% for single phase
+10% for 3 phase
+Excise = 30% of (amount +Surcharge)
+Net = Amount +Surcharge + Excise
+Write a block to calculate the bill for each customer. The program should insert the Meter no., Units used, Rate, Amount, Surcharge, Excise duty and Net for each customer into some other suitable table. Also, at the end, it should insert the total Amount, Surcharge, Excise and Net into some other table.
+---->
+DECLARE
+
+  v_meter_no VARCHAR2(4);
+  v_meter_type CHAR(1);
+  v_prev_reading INT;
+  v_curr_reading INT;
+  v_customer_type CHAR(1);
+  v_last_payment CHAR(1);
+  
+  v_units_used INT;
+  v_rate FLOAT;
+  v_amount FLOAT;
+  v_surcharge FLOAT;
+  v_excise FLOAT;
+  v_net FLOAT;
+  
+  v_total_amount FLOAT := 0;
+  v_total_surcharge FLOAT := 0;
+  v_total_excise FLOAT := 0;
+  v_total_net FLOAT := 0;
+
+BEGIN
+
+  FOR rec IN (SELECT meter_number, meter_type, previous_reading, current_reading, customer_type, last_bill_payment FROM customer) LOOP
+
+    v_meter_no := rec.meter_number;
+    v_meter_type := rec.meter_type;
+    v_prev_reading := rec.previous_reading;
+    v_curr_reading := rec.current_reading;
+    v_customer_type := rec.customer_type;
+    v_last_payment := rec.last_bill_payment;
+    
+
+    v_units_used := v_curr_reading - v_prev_reading;
+    
+ 
+    IF v_customer_type = 'A' THEN
+      v_rate := 1;
+    ELSIF v_customer_type = 'I' THEN
+      v_rate := 1.25;
+    ELSIF v_customer_type = 'C' THEN
+      v_rate := 1.50;
+    ELSIF v_customer_type = 'R' THEN
+      v_rate := 1.30;
+    END IF;
+    
+
+    v_amount := v_rate * v_units_used;
+    
+
+    IF v_meter_type = 'S' THEN
+      v_surcharge := v_amount * 0.05;  
+    ELSIF v_meter_type = 'T' THEN
+      v_surcharge := v_amount * 0.10;  
+    END IF;
+    
+    v_excise := 0.30 * (v_amount + v_surcharge); 
+    
+    v_net := v_amount + v_surcharge + v_excise;
+    
+    INSERT INTO customer_bills (meter_number, units_used, rate, amount, surcharge, excise_duty, net)
+    VALUES (v_meter_no, v_units_used, v_rate, v_amount, v_surcharge, v_excise, v_net);
+    
+    v_total_amount := v_total_amount + v_amount;
+    v_total_surcharge := v_total_surcharge + v_surcharge;
+    v_total_excise := v_total_excise + v_excise;
+    v_total_net := v_total_net + v_net;
+
+  END LOOP;
+  
+  INSERT INTO total_bills (total_amount, total_surcharge, total_excise, total_net)
+  VALUES (v_total_amount, v_total_surcharge, v_total_excise, v_total_net);
+  
+  COMMIT;
+
+END;

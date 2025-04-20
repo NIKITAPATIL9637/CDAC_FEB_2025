@@ -1,0 +1,72 @@
+1. Write a Before Insert trigger on Ord_dtl. Anytime a row is inserted in Ord_dtl, the Booked_qty in Prod_mst should be increased accordingly.
+---> CREATE TABLE Ord_mst (
+    Ord_no NUMBER PRIMARY KEY,
+    Cust_cd VARCHAR2(10),
+    Status CHAR(1)
+);
+
+CREATE TABLE Prod_mst (
+    Prod_cd VARCHAR2(10) PRIMARY KEY,
+    Prod_name VARCHAR2(50),
+    Qty_in_stock NUMBER,
+    Booked_qty NUMBER
+);
+
+CREATE TABLE Ord_dtl (
+    Ord_no NUMBER,
+    Prod_cd VARCHAR2(10),
+    Qty NUMBER,
+    FOREIGN KEY (Ord_no) REFERENCES Ord_mst(Ord_no),
+    FOREIGN KEY (Prod_cd) REFERENCES Prod_mst(Prod_cd)
+);
+
+INSERT INTO Ord_mst VALUES (1, 'C1', 'P');
+
+INSERT INTO Prod_mst VALUES ('P1', 'Floppies', 10000, 1000);
+INSERT INTO Prod_mst VALUES ('P2', 'Printers', 5000, 600);
+INSERT INTO Prod_mst VALUES ('P3', 'Modems', 3000, 200);
+
+INSERT INTO Ord_dtl VALUES (1, 'P1', 100);
+INSERT INTO Ord_dtl VALUES (1, 'P2', 200);
+
+COMMIT;
+
+2. Write a Before Delete trigger on Ord_dtl. Anytime a row is deleted from Ord_dtl, the Booked_qty in Prod_mst should be decreased accordingly.
+
+---> CREATE OR REPLACE TRIGGER trg_before_insert_ord_dtl
+BEFORE INSERT ON Ord_dtl
+FOR EACH ROW
+BEGIN
+    UPDATE Prod_mst
+    SET Booked_qty = Booked_qty + :NEW.Qty
+    WHERE Prod_cd = :NEW.Prod_cd;
+END;
+/
+
+3. Write a Before Update of Prod_cd, Qty trigger on Ord_dtl. Anytime the Prod_cd or Qty is updated, the Booked_qty in Prod_mst should be increased/decreased accordingly.
+
+---->CREATE OR REPLACE TRIGGER trg_before_delete_ord_dtl
+BEFORE DELETE ON Ord_dtl
+FOR EACH ROW
+BEGIN
+    UPDATE Prod_mst
+    SET Booked_qty = Booked_qty - :OLD.Qty
+    WHERE Prod_cd = :OLD.Prod_cd;
+END;
+/
+
+4. Write a Before Update of Status trigger on Ord_mst. If the Status is updated from P (Pending) to D (Delivered), the Booked_qty and Qty_in_stock from Prod_mst should be decreased accordingly. If the Status is updated from P (Pending) to C (Cancelled), the details of the order should be deleted from Ord_dtl and corresponding Booked_qty from Prod_mst should be decreased accordingly. (The Before delete trigger on Ord_dtl would automatically decrease the Booked_qty from Prod_mst).
+
+---->CREATE OR REPLACE TRIGGER trg_before_update_ord_dtl
+BEFORE UPDATE OF Prod_cd, Qty ON Ord_dtl
+FOR EACH ROW
+BEGIN
+    UPDATE Prod_mst
+    SET Booked_qty = Booked_qty - :OLD.Qty
+    WHERE Prod_cd = :OLD.Prod_cd;
+
+    UPDATE Prod_mst
+    SET Booked_qty = Booked_qty + :NEW.Qty
+    WHERE Prod_cd = :NEW.Prod_cd;
+END;
+/

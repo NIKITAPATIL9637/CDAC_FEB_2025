@@ -1,0 +1,71 @@
+1. Select from any table a number and determine whether it is within a given range (for example, between 1 and 10).
+---->DECLARE v_number NUMBER;
+BEGIN
+    SELECT number
+    INTO v_number
+    FROM numbers_table
+    WHERE ROWNUM = 1; 
+    
+    IF v_number BETWEEN 1 AND 10 THEN
+        DBMS_OUTPUT.PUT_LINE('The number ' || v_number || ' is between 1 and 10.');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('The number ' || v_number || ' is NOT between 1 and 10.');
+    END IF;
+END;
+/
+
+2. Select from any table three positive integers representing the sides of a triangle, and determine whether they form a valid triangle. Hint: In a triangle, the sum of any two sides must always be greater than the third side.
+--> DECLARE
+    v_side1 NUMBER;
+    v_side2 NUMBER;
+    v_side3 NUMBER;
+BEGIN
+    SELECT side1, side2, side3
+    INTO v_side1, v_side2, v_side3
+    FROM sides_table
+    WHERE ROWNUM = 1; 
+ 
+   IF v_side1 + v_side2 > v_side3 AND
+       v_side1 + v_side3 > v_side2 AND
+       v_side2 + v_side3 > v_side1 THEN
+        DBMS_OUTPUT.PUT_LINE('The sides form a valid triangle.');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('The sides do NOT form a valid triangle.');
+    END IF;
+END;
+/
+
+3. Check if a given a year is a leap year. The condition is:- year should be (divisible by 4 and not divisible by 100) or (divisible by 4 and divisible by 400.). The year should be Selected from some table.
+----> DECLARE
+    v_year NUMBER;
+BEGIN
+    SELECT year
+    INTO v_year
+    FROM years_table
+    WHERE ROWNUM = 1;     
+   
+    IF (MOD(v_year, 4) = 0 AND MOD(v_year, 100) != 0) OR (MOD(v_year, 400) = 0) THEN
+        DBMS_OUTPUT.PUT_LINE(v_year || ' is a leap year.');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE(v_year || ' is NOT a leap year.');
+    END IF;
+END;
+/
+
+4. Write a program that Selects from any table two character strings. Your program should then determine if one character string exists inside another character string.
+----> DECLARE
+    v_string1 VARCHAR2(100);
+    v_string2 VARCHAR2(100);
+BEGIN
+    SELECT string1, string2
+    INTO v_string1, v_string2
+    FROM strings_table
+    WHERE ROWNUM = 1; 
+
+    IF INSTR(v_string1, v_string2) > 0 THEN
+        DBMS_OUTPUT.PUT_LINE('The string "' || v_string2 || '" exists inside "' || v_string1 || '".');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('The string "' || v_string2 || '" does NOT exist inside "' || v_string1 || '".');
+    END IF;
+END;
+/

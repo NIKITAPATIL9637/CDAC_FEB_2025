@@ -1,0 +1,90 @@
+1. Write a program that computes the perimeter and the area of a rectangle. Define your own values for the length and width. (Assuming that L and W are the length and width of the rectangle, Perimeter = 2*(L+W) and Area = L*W.
+--->DECLARE
+    length NUMBER := 5;  
+    width NUMBER := 3;   
+    perimeter NUMBER;
+    area NUMBER;
+BEGIN
+    perimeter := 2 * (length + width);
+    area := length * width;
+    
+    DBMS_OUTPUT.PUT_LINE('Perimeter of the rectangle: ' || perimeter);
+    DBMS_OUTPUT.PUT_LINE('Area of the rectangle: ' || area);
+END;
+/
+
+2. Write a program that declares an integer variable called num, assigns a value to it, and computes and inserts into the tempp table the value of the variable itself, its square, and its cube.
+--->DECLARE
+    num NUMBER := 4; 
+    square NUMBER;
+    cube NUMBER;
+BEGIN
+    square := num * num;
+    cube := num * num * num;
+    
+    INSERT INTO tempp (num, square, cube) 
+    VALUES (num, square, cube);
+    
+    COMMIT; -- Commit changes to the table
+    
+    DBMS_OUTPUT.PUT_LINE('Data inserted successfully');
+END;
+/
+
+3. Convert a temperature in Fahrenheit (F) to its equivalent in Celsius (C) and vice versa. The required formulae are:- C= (F-32)*5/9
+F= 9/5*C + 32
+--->DECLARE
+    fahrenheit NUMBER := 98.6; 
+    celsius NUMBER;
+BEGIN
+    celsius := (fahrenheit - 32) * 5 / 9;
+    DBMS_OUTPUT.PUT_LINE(fahrenheit || ' Fahrenheit = ' || celsius || ' Celsius');
+    
+    fahrenheit := (9 / 5) * celsius + 32;
+    DBMS_OUTPUT.PUT_LINE(celsius || ' Celsius = ' || fahrenheit || ' Fahrenheit');
+END;
+/
+
+
+4. Convert a number of inches into yards, feet, and inches. For example, 124 inches equals 3 yards, 1 foot, and 4 inches.
+--->DECLARE
+    inches NUMBER := 124;
+    yards NUMBER;
+    feet NUMBER;
+BEGIN
+    yards := FLOOR(inches / 36);
+    inches := MOD(inches, 36);
+    feet := FLOOR(inches / 12);
+    inches := MOD(inches, 12);
+    
+    DBMS_OUTPUT.PUT_LINE('Length is: ' || yards || ' yards, ' || feet || ' feet, ' || inches || ' inches.');
+END;
+/
+
+5. Write a program that enables a user to input an integer. The program should then state whether the integer is evenly divisible by 5.
+--->DECLARE
+    num NUMBER := 15; 
+BEGIN
+    IF MOD(num, 5) = 0 THEN
+        DBMS_OUTPUT.PUT_LINE(num || ' is divisible by 5.');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE(num || ' is not divisible by 5.');
+    END IF;
+END;
+/
+
+6. Your block should read in two real numbers and tell whether the product of the two numbers is equal to or greater than 100.
+---->DECLARE
+    num1 NUMBER := 12.5;  
+    num2 NUMBER := 8.0;   
+    product NUMBER;
+BEGIN
+    product := num1 * num2;
+    
+    IF product >= 100 THEN
+        DBMS_OUTPUT.PUT_LINE('The product of ' || num1 || ' and ' || num2 || ' is ' || product || ' and it is greater than or equal to 100.');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('The product of ' || num1 || ' and ' || num2 || ' is ' || product || ' and it is less than 100.');
+    END IF;
+END;
+/

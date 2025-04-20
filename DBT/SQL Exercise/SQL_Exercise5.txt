@@ -1,0 +1,146 @@
+1. Display the Supplier name and the Quantity sold.
+-----> Select Sname, Qty from S, SPJ;
++--------+------+
+| Sname  | Qty  |
++--------+------+
+| Piyu   |  300 |
+| Pooja  |  300 |
+| Nikita |  300 |
+| Piyu   |  200 |
+| Pooja  |  200 |
+| Nikita |  200 |
+| Piyu   |  150 |
+| Pooja  |  150 |
+| Nikita |  150 |
+| Piyu   |  400 |
+| Pooja  |  400 |
+| Nikita |  400 |
+| Piyu   |  250 |
+| Pooja  |  250 |
+| Nikita |  250 |
++--------+------+
+15 rows in set (0.00 sec)
+
+2. Display the Part name and Quantity sold.
+-----> Select Pname, Qty from P, SPJ;
++--------+------+
+| Pname  | Qty  |
++--------+------+
+| Sony   |  300 |
+| Praful |  300 |
+| Piyush |  300 |
+| Sony   |  200 |
+| Praful |  200 |
+| Piyush |  200 |
+| Sony   |  150 |
+| Praful |  150 |
+| Piyush |  150 |
+| Sony   |  400 |
+| Praful |  400 |
+| Piyush |  400 |
+| Sony   |  250 |
+| Praful |  250 |
+| Piyush |  250 |
++--------+------+
+15 rows in set (0.01 sec)
+
+3. Display the Project name and Quantity sold.
+----> Select ProjectName, Qty from SPJ;
+
+4. Display the Supplier name, Part name, Project name and Quantity sold.
+---> Select Sname, Pname, ProjectName, Qty from S, P, SPJ;
+
+5. Display the Supplier name, Supplying Parts to a Project in the same City.
+---> Select Distinct s.Sname FROM S JOIN Supplies sp ON s.SID = sp.SID 
+                                    JOIN Projects p ON s.PID = p.PID 
+                                    WEHERE s.City =p.City;
+
+6. Display the Part name that is ‘Red’ is color, and the Quantity sold.
+-----> Select p.Pname SUM(spj.Qty) From P JOIN Sales s ON p.PID = s.PID
+                                   WHERE p.color = 'Red' Group By p.Pname;
+
+7. Display all the Quantity sold by Suppliers with the Status = 20.
+-----> SELECT
+    ->     spj.`S#`,
+    ->     SUM(spj.Qty) AS TotalQtySold
+    -> FROM
+    ->     s
+    -> JOIN
+    ->     spj ON s.`S#` = spj.`S#`
+    -> WHERE
+    ->     s.Status = 20
+    -> GROUP BY
+    ->     spj.`S#`;
++----+--------------+
+| S# | TotalQtySold |
++----+--------------+
+| S2 |          150 |
++----+--------------+
+
+8. Display all the Parts and Quantity with a Weight > 14.
+ ----> SELECT
+    ->     p.`P#`,
+    ->     p.Pname,
+    ->     spj.Qty
+    -> FROM
+    ->     p
+    -> JOIN
+    ->     spj ON p.`P#` = spj.`P#`
+    -> WHERE
+    ->     p.Weight > 14;
+Empty set (0.04 sec)
+
+9. Display all the Project names and City, which has bought more than 500 Parts.
+---> SELECT
+    ->     j.Jname,
+    ->     j.City
+    -> FROM
+    ->     j
+    -> JOIN
+    ->     spj ON j.`J#` = spj.`J#`
+    -> GROUP BY
+    ->     j.`J#`, j.Jname, j.City
+    ->  HAVING
+    ->     SUM(spj.Qty) > 500;
++--------+--------+
+| Jname  | City   |
++--------+--------+
+| Mayuri | London |
+| Chanda | Paris  |
++--------+--------+
+2 rows in set (0.03 sec)
+
+10. Display all the Part names and Quantity sold that have a Weight less than 15.
+--->  SELECT
+    ->     p.Pname,
+    ->     spj.Qty
+    -> FROM
+    ->     p
+    -> JOIN
+    ->     spj ON p.`P#` = spj.`P#`
+    -> WHERE
+    ->     p.Weight < 15;
++--------+------+
+| Pname  | Qty  |
++--------+------+
+| Piyush |  300 |
+| Piyush |  400 |
+| Praful |  200 |
+| Praful |  250 |
+| Sony   |  150 |
++--------+------+
+5 rows in set (0.01 sec)select 
+
+11. Display all the Employee names and the name of their Managers.
+----> 
+SELECT 
+    e.EmpName AS Employee, 
+    m.EmpName AS Manager
+FROM 
+    employee e
+LEFT JOIN 
+    employee m ON e.ManagerID = m.EmpID;
+
+
+
+

@@ -1,0 +1,9 @@
+1) Write a query that produces all pairs of salespeople who are living in the same city. Exclude combinations of salespeople with themselves as well as duplicate rows with the order reversed.
+---->SELECT s1.salesperson_name, s2.salesperson_name, s1.city FROM salespeople s1
+JOIN salespeople s2 ON s1.city = s2.city 
+WHERE s1.salesperson_id < s2.salesperson_id;
+
+
+2) Write a query that produces the names and cities of all customers with the same rating as Hoffman.
+----> SELECT c.customer_name, c.city FROM customers c
+WHERE c.rating = (SELECT c2.rating FROM customers c2 WHERE c2.customer_name = 'Hoffman');

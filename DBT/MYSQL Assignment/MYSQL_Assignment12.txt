@@ -1,0 +1,17 @@
+1) Write a query that selects all customers whose ratings are equal to or greater than ANY of Serres’.
+---> SELECT * FROM customers WHERE rating >= ANY 
+(SELECT rating FROM customers WHERE name = 'Serres');
+
+2) Write a query using ANY or ALL that will find all salespeople who have no customers located in their city.
+---->SELECT * FROM salespeople WHERE city <> ALL (SELECT city FROM customers WHERE customers.snum = salespeople.snum);
+
+
+3) Write a query that selects all orders for amounts greater than any for the customers in London.
+----> SELECT * FROM orders WHERE amt > ANY 
+(SELECT amt FROM orders WHERE cust_id IN 
+(SELECT cust_id FROM customers WHERE city = 'London'));
+
+
+4) Write the above query using MIN or MAX.
+----> SELECT * FROM orders WHERE amt > 
+(SELECT MIN(amt) FROM orders WHERE cust_id IN (SELECT cust_id FROM customers WHERE city = 'London'));

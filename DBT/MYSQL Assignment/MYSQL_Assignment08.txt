@@ -1,0 +1,12 @@
+1) Assume each salesperson has a 12% commission. Write a query on the orders table that will produce the order number, the salesperson number, and the amount of the salesperson’s commission for that order.
+--->SELECT order_number, salesperson_number, (order_amount * 0.12) FROM orders;
+
+2) Write a query on the Customers table that will find the highest rating in each city. Put the output in this form:
+For the city (city), the highest rating is : (rating).
+---> SELECT city, MAX(rating) AS highest_rating FROM customers GROUP BY city;
+
+3) Write a query that lists customers in descending order of rating. Output the rating field first, followed by the customer’s name and number.
+---> SELECT rating, name, customer_number FROM customers ORDER BY rating DESC;
+
+4) Write a query that totals the orders for each day and places the results in descending order.
+----> SELECT order_date, SUM(order_amount) FROM orders GROUP BY order_date ORDER BY total_orders DESC;
