@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Contact Us</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", sans-serif;
+      }
+
+      body {
+        background: #f5f7fa;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+      .contact-container {
+        display: flex;
+        width: 90%;
+        max-width: 1100px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .contact-info {
+        background: linear-gradient(to top left, #2196f3, #00bcd4, #f48fb1);
+        color: #fff;
+        padding: 40px;
+        flex: 1;
+      }
+
+      .contact-info h2 {
+        margin-bottom: 20px;
+      }
+
+      .contact-info p {
+        margin: 10px 0;
+      }
+
+      .contact-info p i {
+        margin-right: 10px;
+      }
+
+      .contact-info .social-icons {
+        margin-top: 30px;
+      }
+
+      .contact-info .social-icons i {
+        font-size: 18px;
+        margin-right: 15px;
+        cursor: pointer;
+      }
+
+      .contact-form {
+        flex: 2;
+        padding: 40px;
+      }
+
+      .contact-form h2 {
+        margin-bottom: 20px;
+        color: #333;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-group label {
+        font-size: 14px;
+        color: #666;
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      .form-group input,
+      .form-group textarea {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-bottom: 2px solid #ccc;
+        font-size: 14px;
+        outline: none;
+        transition: 0.3s;
+      }
+
+      .form-group input:focus,
+      .form-group textarea:focus {
+        border-bottom: 2px solid #2196f3;
+      }
+
+      .form-group textarea {
+        min-height: 80px;
+        resize: vertical;
+      }
+
+      .contact-form button {
+        background-color: #3f51b5;
+        color: white;
+        padding: 12px 25px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: 0.3s;
+      }
+
+      .contact-form button:hover {
+        background-color: #303f9f;
+      }
+
+      @media (max-width: 768px) {
+        .contact-container {
+          flex-direction: column;
+        }
+
+        .contact-info,
+        .contact-form {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="contact-container">
+      <div class="contact-info">
+        <h2>Get in touch</h2>
+        <p><strong>📛 Name:</strong> HTML CSS Tutorials</p>
+        <p><strong>📧 Email:</strong> tutorials@gmail.com</p>
+        <p><strong>📞 Phone:</strong> +91 9637057818</p>
+        <p>
+          <strong>📍 Address:</strong> 14, B4, Giridhar Nagar, Kothrude, Pune.
+        </p>
+        <div class="social-icons">🌐 🔵 🟥 📺</div>
+      </div>
+      <div class="contact-form">
+        <h2>Contact Us</h2>
+        <form>
+          <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" placeholder="Full Name" required />
+          </div>
+          <div class="form-group">
+            <label>Email ID</label>
+            <input type="email" placeholder="Email" required />
+          </div>
+          <div class="form-group">
+            <label>Website</label>
+            <input type="text" placeholder="Website" />
+          </div>
+          <div class="form-group">
+            <label>Contact Number</label>
+            <input type="tel" placeholder="Contact Number" />
+          </div>
+          <div class="form-group">
+            <label>Message</label>
+            <textarea placeholder="Message"></textarea>
+          </div>
+          <button type="submit">Submit</button>
+          <footer>
+            <h6 style="text-align: center">copyright@NikitaPatil</h6>
+          </footer>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

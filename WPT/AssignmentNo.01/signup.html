@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Sign Up Page</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #90c9e6, #7c8d9b);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .signup-container {
+        background-color: #fff;
+        padding: 40px 30px;
+        border-radius: 15px;
+        box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+        width: 350px;
+      }
+
+      .signup-container h2 {
+        text-align: center;
+        margin-bottom: 25px;
+        color: #333;
+      }
+
+      .signup-container input[type="text"],
+      .signup-container input[type="email"],
+      .signup-container input[type="password"] {
+        width: 100%;
+        padding: 12px 10px;
+        margin-bottom: 15px;
+        border: 1px solid #2b2d2d;
+        border-radius: 8px;
+        font-size: 14px;
+      }
+
+      .signup-container input[type="submit"] {
+        width: 100%;
+        padding: 12px;
+        background-color: #68a4cb;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .signup-container input[type="submit"]:hover {
+        background-color: #60a1b3;
+      }
+
+      .signup-container p {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 15px;
+      }
+
+      .signup-container a {
+        color: #66b6d1;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="signup-container">
+      <h2>Create Account</h2>
+      <form>
+        <input type="text" placeholder="Full Name" required />
+        <input type="email" placeholder="Email Address" required />
+        <input type="password" placeholder="Password" required />
+        <input type="password" placeholder="Confirm Password" required />
+        <input type="submit" value="Sign Up" />
+      </form>
+      <p>Already have an account? <a href="#">Login here</a></p>
+      <footer>
+        <h6 style="text-align: center">copyright@NikitaPatil</h6>
+      </footer>
+    </div>
+  </body>
+</html>

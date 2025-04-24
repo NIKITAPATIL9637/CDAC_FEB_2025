@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS Basics Demo</title>
+    <style>
+      /* CSS Syntax and Comments */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+
+      /* CSS Selectors */
+      * {
+        box-sizing: border-box;
+      }
+
+      .box {
+        background-color: lightblue;
+        width: 200px;
+        height: 100px;
+        padding: 15px;
+        border: 2px solid black;
+        margin: 20px;
+      }
+
+      #main {
+        background-color: #f0f0f0;
+        padding: 20px;
+      }
+
+      h1 {
+        color: red;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+
+      p {
+        color: green;
+        font-size: 16px;
+        text-decoration: underline;
+      }
+
+      /* CSS Backgrounds */
+      .background-demo {
+        background-color: lightgray;
+        background-image: url("https://via.placeholder.com/150");
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 150px;
+      }
+
+      /* CSS Outline */
+      button {
+        outline: 2px dotted red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="main">
+      <h1>CSS Basics Demo</h1>
+
+      <!-- CSS How To: Internal Style -->
+      <p>This is an example of a styled paragraph.</p>
+
+      <!-- CSS Colors and Box Model -->
+      <div class="box">This is a box using the CSS Box Model.</div>
+
+      <!-- CSS Background -->
+      <div class="background-demo"></div>
+
+      <!-- CSS Border, Margin, Padding, Width, Height -->
+      <div class="box">Styled with border, padding, and margin</div>
+
+      <!-- CSS Outline -->
+      <button>Click Me</button>
+    </div>
+  </body>
+</html>

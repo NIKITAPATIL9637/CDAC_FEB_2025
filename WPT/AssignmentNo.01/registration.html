@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Registration Form</title>
+    <style>
+      body {
+        background-color: #eae8f1;
+        font-family: Arial, sans-serif;
+      }
+      .form-container {
+        width: 700px;
+        margin: 20px auto;
+        background-color: #9fccd8;
+        padding: 20px 40px;
+        border-radius: 10px;
+        color: black;
+      }
+      h2 {
+        text-align: center;
+        color: black;
+        text-decoration: underline;
+      }
+      label {
+        display: block;
+        margin-top: 10px;
+        margin-bottom: 5px;
+      }
+      input[type="text"],
+      input[type="email"],
+      input[type="number"],
+      select,
+      textarea {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        border: none;
+        font-size: 14px;
+      }
+      textarea {
+        height: 60px;
+        resize: none;
+      }
+      .inline {
+        display: inline-block;
+        margin-right: 15px;
+      }
+      table {
+        width: 100%;
+        margin-top: 10px;
+        background-color: #a5b7c5;
+        border-collapse: collapse;
+      }
+      th,
+      td {
+        padding: 8px;
+        border: 1px solid #ffffff55;
+      }
+      .buttons {
+        text-align: center;
+        margin-top: 20px;
+      }
+      input[type="submit"],
+      input[type="reset"] {
+        padding: 10px 20px;
+        margin: 5px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        background-color: #ddd;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="form-container">
+      <h2>STUDENT REGISTRATION FORM</h2>
+
+      <form>
+        <label>First Name</label>
+        <input type="text" maxlength="30" pattern="[A-Za-z]+" placeholder="Enter your city" required />
+
+        <label>Last Name</label>
+        <input type="text" maxlength="30" pattern="[A-Za-z]+" title="Enter your last name" placeholder="Enter your last name" required />
+
+        <div class="form-group">
+          <label for="dob">Date of Birth:</label>
+          <input type="date" id="dob" name="dob" />
+        </div>
+
+        <label>Email ID</label>
+        <input type="email" title="Enter your email address" placeholder="Enter your email" required />
+
+        <label>Mobile Number</label>
+        <input type="text" maxlength="10" pattern="\d{10}" title="Enter your 10-digit mobile number" placeholder="Enter your mobile number" required />
+
+        <label>Gender</label>
+        <div class="inline">
+          <input type="radio" name="gender" value="Male" title="Select Male as your gender" required /> Male
+        </div>
+        <div class="inline">
+          <input type="radio" name="gender" value="Female" title="Select Female as your gender" /> Female
+        </div>
+
+        <label>Address</label>
+        <textareatextarea title="Enter your address" placeholder="Enter your address"></textarea>
+
+        <label>City</label>
+        <input type="text" maxlength="30" pattern="[A-Za-z ]+" title="Enter your city" placeholder="Enter your city" required />
+
+        <label>Pin Code</label>
+        <input type="text" maxlength="6" pattern="\d{6}" title="Enter your 6-digit pin code" placeholder="Enter your pin code" required />
+
+        <label>State</label>
+        <input type="text" maxlength="30" pattern="[A-Za-z ]+" title="Enter your state" placeholder="Enter your state" required />
+
+        <label>Country</label>
+        <input type="text" value="India" readonly title="Country name" placeholder="Enter your country" />
+
+        <label>Hobbies</label>
+        <div class="inline"><input type="checkbox" title="Select Drawing as your hobby" id="hobby-drawing" /><label for="hobby-drawing"> Drawing</label></div>
+        <div class="inline">
+          <input type="checkbox" id="hobby-singing" title="Select Singing as your hobby" />
+          <label for="hobby-singing"> Singing</label>
+        </div>
+        <div class="inline">
+          <input type="checkbox" id="hobby-dancing" title="Select Dancing as your hobby" />
+          <label for="hobby-dancing"> Dancing</label>
+        </div>
+        <div class="inline">
+          <input type="checkbox" id="hobby-sketching" title="Select Sketching as your hobby" />
+          <label for="hobby-sketching"> Sketching</label>
+        </div>
+        <div class="inline">
+          <input type="checkbox" id="hobby-others" title="Select Others as your hobby" />
+          <label for="hobby-others"> Others</label>
+        </div>
+        <input type="text" placeholder="If Others" />
+
+        <label>Qualification</label>
+        <table>
+          <tr>
+            <th>Sl.No.</th>
+            <th>Examination</th>
+            <th>Board</th>
+            <th>Percentage</th>
+            <th>Year of Passing</th>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Class X</td>
+            <td><input type="text" maxlength="10" title="Enter the board name" placeholder="Board Name" /></td>
+            <td><input type="text" pattern="\d+(\.\d{1,2})?" title="Enter your percentage (e.g., 85.5)" placeholder="Percentage" /></td>
+            <td><input type="text" title="Enter the year of passing" placeholder="Year of Passing" /></td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Class XII</td>
+            <td><input type="text" maxlength="10" /></td>
+            <td><input type="text" pattern="\d+(\.\d{1,2})?" /></td>
+            <td><input type="text" /></td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Graduation</td>
+            <td><input type="text" maxlength="10" /></td>
+            <td><input type="text" pattern="\d+(\.\d{1,2})?" /></td>
+            <td><input type="text" /></td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Masters</td>
+            <td><input type="text" maxlength="10" /></td>
+            <td><input type="text" pattern="\d+(\.\d{1,2})?" /></td>
+            <td><input type="text" /></td>
+          </tr>
+        </table>
+
+        <label>Courses Applied For</label>
+        <div class="inline">
+          <input type="radio" name="course" value="BCA" required /> BCA
+        </div>
+        <div class="inline">
+          <input type="radio" name="course" value="B.Com" /> B.Com
+        </div>
+        <div class="inline">
+          <input type="radio" name="course" value="B.Sc" /> B.Sc
+        </div>
+        <div class="inline">
+          <input type="radio" name="course" value="B.A" /> B.A
+        </div>
+
+        <div class="buttons">
+          <input type="submit" value="Submit" />
+          <input type="reset" value="Reset" />
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

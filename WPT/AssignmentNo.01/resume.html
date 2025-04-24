@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Resume</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        background-color: #f4f4f4;
+      }
+      .container {
+        display: flex;
+        width: 100%;
+        max-width: 1000px;
+        margin: 0 auto;
+        background-color: white;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .left-column {
+        background-color: #f0a500;
+        color: white;
+        width: 35%;
+        padding: 20px;
+      }
+      .right-column {
+        padding: 20px;
+        width: 65%;
+      }
+      h1,
+      h2,
+      h3 {
+        margin: 10px 0;
+      }
+      .section {
+        margin-bottom: 20px;
+      }
+      .personal-info,
+      .skills,
+      .languages {
+        margin-bottom: 20px;
+      }
+      .stars {
+        color: #fff;
+      }
+      .stars span {
+        color: orange;
+      }
+      .work-entry,
+      .edu-entry {
+        margin-bottom: 15px;
+      }
+      .work-entry h4,
+      .edu-entry h4 {
+        margin: 5px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- LEFT COLUMN -->
+      <div class="left-column">
+        <h1>Nikita Patil</h1>
+        <h2>Software Developer</h2>
+
+        <div class="personal-info">
+          <h3>Personal Info</h3>
+          <p>
+            <strong>Address:</strong> 14, B4, Giridhar Nagar, Warje, Pune-411058
+          </p>
+          <p><strong>Phone:</strong> +91 9637057818</p>
+          <p><strong>Email:</strong> nikitapatil@gmail.com</p>
+          <p><strong>LinkedIn:</strong> linkedin.com/in/nikita</p>
+          <p><strong>Date of Birth:</strong> 2001-07-02</p>
+          <p><strong>Marital status:</strong> Single</p>
+          <p><strong>Citizenship:</strong> Indian</p>
+        </div>
+
+        <div class="skills">
+          <h3>Skills</h3>
+          <ul>
+            <li>Communication skill</li>
+            <li>Problem solving</li>
+            <li>Relationship building</li>
+            <li>Strategic planning</li>
+          </ul>
+        </div>
+
+        <div class="languages">
+          <h3>Languages</h3>
+          <p>Hindi: Native</p>
+          <p>English: Bilingual <span class="stars">★★★★★</span></p>
+          <p>Marathi: Basic <span class="stars">★★★★☆</span></p>
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN -->
+      <div class="right-column">
+        <div class="section">
+          <h2>Summary</h2>
+          <p>
+            Dynamic and skilled Full Stack Java Developer with a passion for
+            creating innovative real-time web applications. Experienced in both
+            front-end and back-end development, with a strong understanding of
+            software architecture and design principles. Seeking an opportunity
+            to contribute to challenging projects and collaborate with a team of
+            talented professionals.
+          </p>
+        </div>
+
+        <div class="section">
+          <h2>Work History</h2>
+          <div class="work-entry">
+            <h4>Software Developer</h4>
+            <p><strong>2024-03 - 2025-02 | Sinhgad Road, Pune</strong></p>
+            <ul>
+              <li>
+                Proficient Full Stack Java Developer with 11 months of
+                experience in designing and developing scalable web applications
+                using the Spring Framework.
+              </li>
+              <li>
+                Hands-on expertise in Java, Spring Boot, Hibernate, RESTful
+                APIs, and front-end technologies like HTML, CSS, JavaScript, and
+                frameworks such as React.
+              </li>
+              <li>
+                Created database as per client requirements using MySQL or H2
+                and version control systems like Git and GitHub.
+              </li>
+              <li>
+                Adept at collaborating with cross-functional teams to deliver
+                efficient, high-quality solutions.
+              </li>
+              <li>
+                Passionate about coding and continuously enhancing technical
+                skills.
+              </li>
+            </ul>
+          </div>
+
+          <div class="work-entry">
+            <h4>Data Science Intern</h4>
+            <p><strong>2021-11 - 2022-02 | Remote, India</strong></p>
+            <ul>
+              <li>
+                Assisted in data preprocessing and cleaning tasks to prepare
+                large healthcare datasets for analysis, ensuring accuracy and
+                consistency.
+              </li>
+              <li>
+                Created interactive dashboards using tools like Tableau and
+                Power BI to visualize key performance indicators, supporting
+                data-driven decision-making.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>Education</h2>
+          <div class="edu-entry">
+            <h4>CDAC, Diploma</h4>
+            <p><strong>2025-02 | CDAC, Mumbai</strong></p>
+            <p>CGPA: ON THE WAY</p>
+          </div>
+
+          <div class="edu-entry">
+            <h4>BE CSE</h4>
+            <p><strong>2023-07 | Sinhgad, Pune</strong></p>
+            <p>CGPA: 8.74</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
