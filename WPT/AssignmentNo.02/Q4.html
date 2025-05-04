@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Highlight Bold Words</title>
+    <style>
+      .highlight {
+        background-color: yellow;
+      }
+    </style>
+  </head>
+  <body>
+    <p id="text">
+      This is a <b>simple</b> paragraph with some <b>bold</b> words that will be
+      <b>highlighted</b> when you hover over the link below.
+    </p>
+
+    <a
+      href="#"
+      onmouseover="highlightBold(true)"
+      onmouseout="highlightBold(false)"
+      >Hover over this link to highlight bold words</a
+    >
+
+    <script>
+      function highlightBold(shouldHighlight) {
+        const boldWords = document.querySelectorAll("#text b");
+        boldWords.forEach((word) => {
+          if (shouldHighlight) {
+            word.classList.add("highlight");
+          } else {
+            word.classList.remove("highlight");
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

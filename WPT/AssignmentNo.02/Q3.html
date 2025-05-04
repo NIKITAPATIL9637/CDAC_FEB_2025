@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q4</title>
+  </head>
+  <body>
+    <h3>Choose an item to remove:</h3>
+
+    <select id="myDropdown" title="Choose a color">
+      <option value="red">Red</option>
+      <option value="green">Green</option>
+      <option value="blue">Blue</option>
+      <option value="yellow">Yellow</option>
+    </select>
+
+    <br /><br />
+    <button onclick="removeItem()">Remove Selected</button>
+
+    <script>
+      function removeItem() {
+        let dropdown = document.getElementById("myDropdown");
+        if (dropdown.options.length > 0) {
+          dropdown.remove(dropdown.selectedIndex);
+        } else {
+          alert("No more items to remove.");
+        }
+      }
+    </script>
+  </body>
+</html>
